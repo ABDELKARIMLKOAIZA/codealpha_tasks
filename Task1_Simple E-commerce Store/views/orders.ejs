@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Mes commandes</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Simple E-commerce Store</h1>
+
+    <nav>
+      <a href="/">Accueil</a>
+      <a href="/products">Produits</a>
+      <a href="/cart">Panier (<%= cartCount %>)</a>
+
+      <% if (user) { %>
+        <a href="/orders">Mes commandes</a>
+        <span class="user-name">Bonjour <%= user.name %></span>
+        <a href="/logout">Logout</a>
+      <% } else { %>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+      <% } %>
+    </nav>
+  </header>
+
+  <main>
+    <section class="orders-container">
+      <h2>Mes commandes</h2>
+
+      <% if (orders.length === 0) { %>
+
+        <p class="empty-cart">Vous n’avez aucune commande.</p>
+        <a href="/products" class="btn-small">Voir les produits</a>
+
+      <% } else { %>
+
+        <% orders.forEach(function(order) { %>
+          <div class="order-card">
+            <h3>Commande #<%= order.id %></h3>
+
+            <p><strong>Date :</strong> <%= order.date %></p>
+            <p><strong>Status :</strong> <%= order.status %></p>
+            <p><strong>Total :</strong> <%= order.total %> DH</p>
+            <p><strong>Adresse :</strong> <%= order.address %></p>
+            <p><strong>Téléphone :</strong> <%= order.phone %></p>
+
+            <h4>Produits :</h4>
+
+            <% order.items.forEach(function(item) { %>
+              <div class="order-item">
+                <span><%= item.name %> x <%= item.quantity %></span>
+                <strong><%= item.price * item.quantity %> DH</strong>
+              </div>
+            <% }) %>
+          </div>
+        <% }) %>
+
+      <% } %>
+    </section>
+  </main>
+
+</body>
+</html>

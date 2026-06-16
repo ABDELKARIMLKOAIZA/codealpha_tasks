@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Simple E-commerce Store</h1>
+
+    <nav>
+      <a href="/">Accueil</a>
+      <a href="/products">Produits</a>
+      <a href="/cart">Panier (<%= cartCount %>)</a>
+
+      <% if (user) { %>
+        <span class="user-name">Bonjour <%= user.name %></span>
+        <a href="/logout">Logout</a>
+      <% } else { %>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+      <% } %>
+    </nav>
+  </header>
+
+  <main>
+    <section class="form-container">
+      <h2>Connexion</h2>
+
+      <% if (error) { %>
+        <p class="error-message"><%= error %></p>
+      <% } %>
+
+      <% if (success) { %>
+        <p class="success-message"><%= success %></p>
+      <% } %>
+
+      <form action="/login" method="POST">
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Votre email">
+
+        <label>Mot de passe</label>
+        <input type="password" name="password" placeholder="Votre mot de passe">
+
+        <button type="submit" class="btn-form">Se connecter</button>
+      </form>
+
+      <p class="form-link">
+        Vous n’avez pas de compte ?
+        <a href="/register">Créer un compte</a>
+      </p>
+    </section>
+  </main>
+
+</body>
+</html>

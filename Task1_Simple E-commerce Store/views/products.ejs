@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Produits</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Simple E-commerce Store</h1>
+
+    <nav>
+  <a href="/">Accueil</a>
+  <a href="/products">Produits</a>
+  <a href="/cart">Panier (<%= cartCount %>)</a>
+
+  <% if (user) { %>
+    <span class="user-name">Bonjour <%= user.name %></span>
+    <a href="/logout">Logout</a>
+  <% } else { %>
+    <a href="/login">Login</a>
+    <a href="/register">Register</a>
+  <% } %>
+</nav>
+  </header>
+
+  <main>
+    <section class="products-section">
+      <h2>Nos produits</h2>
+
+      <div class="products-grid">
+
+        <% products.forEach(function(product) { %>
+
+          <div class="product-card">
+            <img src="<%= product.image %>" alt="<%= product.name %>">
+
+            <div class="product-info">
+              <h3><%= product.name %></h3>
+              <p><%= product.description %></p>
+              <strong><%= product.price %> DH</strong>
+
+              <div class="product-actions">
+                <a class="btn-small" href="/products/<%= product.id %>">Voir détails</a>
+              </div>
+            </div>
+          </div>
+
+        <% }) %>
+
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>

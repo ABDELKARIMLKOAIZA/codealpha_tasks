@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Passer la commande</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Simple E-commerce Store</h1>
+
+    <nav>
+      <a href="/">Accueil</a>
+      <a href="/products">Produits</a>
+      <a href="/cart">Panier (<%= cartCount %>)</a>
+
+      <% if (user) { %>
+        <a href="/orders">Mes commandes</a>
+        <span class="user-name">Bonjour <%= user.name %></span>
+        <a href="/logout">Logout</a>
+      <% } else { %>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+      <% } %>
+    </nav>
+  </header>
+
+  <main>
+    <section class="checkout-container">
+      <h2>Passer la commande</h2>
+
+      <% if (error) { %>
+        <p class="error-message"><%= error %></p>
+      <% } %>
+
+      <div class="checkout-content">
+
+        <div class="checkout-form">
+          <form action="/checkout" method="POST">
+
+            <label>Adresse de livraison</label>
+            <textarea name="address" placeholder="Votre adresse complète"></textarea>
+
+            <label>Téléphone</label>
+            <input type="text" name="phone" placeholder="Votre numéro de téléphone">
+
+            <label>Méthode de paiement</label>
+            <select name="paymentMethod">
+              <option value="">Choisir une méthode</option>
+              <option value="Paiement à la livraison">Paiement à la livraison</option>
+              <option value="Carte bancaire">Carte bancaire</option>
+            </select>
+
+            <button type="submit" class="btn-form">
+              Confirmer la commande
+            </button>
+
+          </form>
+        </div>
+
+        <div class="checkout-summary">
+          <h3>Résumé du panier</h3>
+
+          <% cart.forEach(function(item) { %>
+            <div class="summary-item">
+              <span><%= item.name %> x <%= item.quantity %></span>
+              <strong><%= item.price * item.quantity %> DH</strong>
+            </div>
+          <% }) %>
+
+          <hr>
+
+          <div class="summary-total">
+            <span>Total</span>
+            <strong><%= total %> DH</strong>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>

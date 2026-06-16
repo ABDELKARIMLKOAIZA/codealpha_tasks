@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple E-commerce Store</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Simple E-commerce karim Store</h1>
+
+    <nav>
+  <a href="/">Accueil</a>
+  <a href="/products">Produits</a>
+  <a href="/cart">Panier (<%= cartCount %>)</a>
+
+  <% if (user) { %>
+    <span class="user-name">Bonjour <%= user.name %></span>
+    <a href="/logout">Logout</a>
+  <% } else { %>
+    <a href="/login">Login</a>
+    <a href="/register">Register</a>
+  <% } %>
+</nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>Bienvenue dans notre boutique en ligne</h2>
+      <p class="luxury-text">Boutique de luxe</p>
+
+      <a class="btn" href="/products">Voir les produits</a>
+    </section>
+  </main>
+
+</body>
+</html>
