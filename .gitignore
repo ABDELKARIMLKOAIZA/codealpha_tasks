@@ -17,3 +17,19 @@ yarn-error.log*
 
 .DS_Store
 .vscode/
+
+# Dependencies
+node_modules/
+
+# Build files
+dist/
+build/
+
+# Environment files
+.env
+
+# SQLite database
+*.db
+
+# Uploaded files
+uploads/
